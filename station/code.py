@@ -34,7 +34,7 @@ def send_data():
     data["pressure"] = bme280.pressure
     data["altitude"] = bme280.altitude
     data["ambient_light"] = (ambient_light.value * 3.3) / 65536
-    response = requests.post("http://10.0.0.51:3000/post",json=data)
+    response = requests.post("http://vr.josh.earth:3000/post",json=data)
     print("data was sent",data)
     print("response was", response.text)
     response.close()
