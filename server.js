@@ -14,6 +14,9 @@ app.use(cors())
 app.get('/',(req,res)=>{
     res.sendFile('index.html',{ root:'html' })
 })
+app.get('/charts.js',(req,res)=>{
+    res.sendFile('charts.js',{ root:'html' })
+})
 
 
 let latest_data = {

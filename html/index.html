@@ -26,7 +26,6 @@
     />
     <meta name="twitter:card" content="summary" />
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
 </head>
 <body>
 
@@ -38,73 +37,9 @@
     click to look at <a href="http://vr.josh.earth:3000/latest">raw JSON data</a>
 </p>
 
-<div id="charts">
-    <canvas id="hude" width="400" height="400"></canvas>
-    <canvas id="hatton" width="400" height="400"></canvas>
+<div id="charts"></div>
 
-    <script>
-        function make_chart(id) {
-            var ctx = document.getElementById(id).getContext('2d');
-            const labels = [];
-            var myChart = new Chart(ctx, {
-                type: 'scatter',
-                data:{
-                    labels:labels,
-                    datasets: [{
-                        label: id+' temp',
-                        fill:true,
-                        borderColor: 'rgb(75, 192, 192)',
-                        data: [],
-                    }]
-                },
-                options: {
-                    plugins:{
-                        title: {
-                            display:true,
-                            text:`${id} temp stuff`,
-                        }
-                    },
-                    legend:{
-                        displayed:true,
-                    },
-                    responsive:false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-
-            });
-
-            function CtoF(t) {
-                return t*1.8+32
-            }
-            fetch("http://vr.josh.earth:3000/latest").then((r)=>r.json())
-                .then((data)=>{
-                    console.log("got the data",data[id])
-                    data[id].forEach((d,i) => {
-                        let label = i
-                        let temp = d.temperature
-                        myChart.data.labels.push(label)
-                        myChart.data.datasets[0].data.push(CtoF(temp))
-                    })
-                    console.log("new data is",myChart.data)
-                    myChart.update()
-
-
-                })
-        }
-
-        make_chart('hude')
-        make_chart('hatton')
-
-
-    </script>
-
-</div>
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+<script src="./charts.js"></script>
 </body>
 </html>
