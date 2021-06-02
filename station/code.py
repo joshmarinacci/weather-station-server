@@ -10,6 +10,7 @@ import socketpool
 import adafruit_requests
 import ssl
 
+STATION_ID = "jude"
 
 # Create sensor object, using the board's default I2C bus.
 i2c = board.I2C()  # uses board.SCL and board.SDA
@@ -34,6 +35,7 @@ def send_data():
     data["pressure"] = bme280.pressure
     data["altitude"] = bme280.altitude
     data["ambient_light"] = (ambient_light.value * 3.3) / 65536
+    data["station_id"] = STATION_ID
     response = requests.post("http://vr.josh.earth:3000/post",json=data)
     print("data was sent",data)
     print("response was", response.text)
