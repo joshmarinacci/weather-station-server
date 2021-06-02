@@ -1,7 +1,7 @@
 function make_chart(id,data) {
     const canvas = document.createElement("canvas")
-    canvas.width = 400
-    canvas.height = 400
+    canvas.width = 300
+    canvas.height = 300
     let ctx = canvas.getContext('2d')
     const labels = [];
     const myChart = new Chart(ctx, {
@@ -19,7 +19,7 @@ function make_chart(id,data) {
             plugins: {
                 title: {
                     display: true,
-                    text: `${id} temp stuff`
+                    text: `${id} temp`
                 }
             },
             legend: {
