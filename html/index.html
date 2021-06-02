@@ -1,11 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <title>Feather S2 Weather Station</title>
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+    <meta
+            name="description"
+            content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Hello World!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
+    <meta
+            property="og:description"
+            content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta
+            property="og:image"
+            content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
 </head>
 <body>
-webpage
+
+<h1>
+    Weather Station Data
+</h1>
+
+<p>
+    click to look at <a href="http://vr.josh.earth:3000/latest">raw JSON data</a>
+</p>
+
+<div id="charts">
+    <canvas id="hude" width="400" height="400"></canvas>
+    <canvas id="hatton" width="400" height="400"></canvas>
+
+    <script>
+        function make_chart(id) {
+            var ctx = document.getElementById(id).getContext('2d');
+            const labels = [];
+            var myChart = new Chart(ctx, {
+                type: 'scatter',
+                data:{
+                    labels:labels,
+                    datasets: [{
+                        label: id+' temp',
+                        fill:true,
+                        borderColor: 'rgb(75, 192, 192)',
+                        data: [],
+                    }]
+                },
+                options: {
+                    plugins:{
+                        title: {
+                            display:true,
+                            text:`${id} temp stuff`,
+                        }
+                    },
+                    legend:{
+                        displayed:true,
+                    },
+                    responsive:false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+
+            });
+
+            function CtoF(t) {
+                return t*1.8+32
+            }
+            fetch("http://vr.josh.earth:3000/latest").then((r)=>r.json())
+                .then((data)=>{
+                    console.log("got the data",data[id])
+                    data[id].forEach((d,i) => {
+                        let label = i
+                        let temp = d.temperature
+                        myChart.data.labels.push(label)
+                        myChart.data.datasets[0].data.push(CtoF(temp))
+                    })
+                    console.log("new data is",myChart.data)
+                    myChart.update()
+
+
+                })
+        }
+
+        make_chart('hude')
+        make_chart('hatton')
+
+
+    </script>
+
+</div>
 
 
 
