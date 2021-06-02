@@ -49,7 +49,7 @@ function make_chart(id,data) {
 }
 
 function fetch_data() {
-    return fetch("http://vr.josh.earth:3000/latest")
+    return fetch("https://weather.josh.earth/latest")
         .then((r)=>r.json())
         .then((data)=> {
             return data
