@@ -25,6 +25,7 @@ let station_data = {
 function append_data(msg) {
     if(!msg.station) throw new Error("missing station id")
     if(!station_data[msg.station]) station_data[msg.station] = []
+    msg.timestamp = new Date().toJSON()
     let ar = station_data[msg.station]
     if(ar.length > 10) ar.splice(0,ar.length-10)
     ar.push(msg)
