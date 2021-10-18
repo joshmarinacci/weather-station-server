@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,40 +9,40 @@
     <title>Feather S2 Weather Station</title>
     <!-- Meta tags for SEO and social sharing -->
     <link rel="canonical" href="https://weather.josh.earth/" />
-    <meta name="description"  content="weather sensor project"  />
+    <meta name="description" content="weather sensor project" />
     <meta name="robots" content="index,follow" />
     <meta property="og:title" content="Weather Sensors" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://weather.jsoh.earth/" />
-    <meta
-            property="og:description"
-            content="weather sensor project with Adafruit Feather S2"
-    />
+    <meta property="og:description" content="weather sensor project with Adafruit Feather S2" />
     <meta name="twitter:card" content="summary" />
     <style type="text/css">
         #charts {
             display: flex;
             flex-direction: row;
         }
-        #charts canvas {
+
+        canvas {
             border: 3px solid black;
         }
     </style>
 
 </head>
+
 <body>
 
-<h1>
-    Weather Station Data
-</h1>
+    <h1>
+        Weather Station Data
+    </h1>
 
-<p>
-    click to look at <a href="http://weather.josh.earth/latest">raw JSON data</a>
-</p>
+    <p>
+        click to look at <a href="http://weather.josh.earth/latest">raw JSON data</a>
+    </p>
 
-<div id="charts"></div>
+    <div id="charts"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
-<script src="./charts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <script src="./charts.js"></script>
 </body>
+
 </html>
